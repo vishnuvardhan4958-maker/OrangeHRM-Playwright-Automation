@@ -1,10 +1,10 @@
 
+
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
 
-  // Test timeout: 1 minute
   timeout: 60000,
 
   fullyParallel: true,
@@ -20,18 +20,16 @@ export default defineConfig({
   use: {
     trace: 'on-first-retry',
 
-    // Show the browser
-    headless: false,
+    // Visible locally, headless in CI
+    headless: !!process.env.CI,
 
-    // Slow down browser actions by 1 second
+    // Slow locally, normal speed in CI
     launchOptions: {
-      slowMo: 1000,
+      slowMo: process.env.CI ? 0 : 1000,
     },
 
-    // Action timeout: 1 minute
     actionTimeout: 60000,
 
-    // Navigation timeout: 1 minute
     navigationTimeout: 60000,
   },
 
