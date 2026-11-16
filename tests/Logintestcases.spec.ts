@@ -83,4 +83,6 @@ test('verify valid username with empty password', async ({ page })=> {
   await page.getByRole('textbox',{name:'password'}).fill('');
   await  page.getByRole('button',{name:'login'}).click();
   //await expect(page.getByText('Required').first()).toBeVisible();
+await page.close();
+
 });
