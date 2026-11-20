@@ -3,11 +3,15 @@
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
+
   testDir: './tests',
+
+  // Discover all Playwright TypeScript test files
+  testMatch: '**/*.spec.ts',
 
   timeout: 60000,
 
-  fullyParallel: true, 
+  fullyParallel: true,
 
   forbidOnly: !!process.env.CI,
 
@@ -39,4 +43,5 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
   ],
+
 });
